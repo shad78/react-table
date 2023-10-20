@@ -7,7 +7,7 @@ const port = 3001;
 app.use(express.json());
 app.use(cors());
 
-const dataPath = `${__dirname}\\data\\date.json`;
+const dataPath = `${__dirname}/data/date.json`;
 
 app.get("/", (req, res) => {
   res.send("API is running");
