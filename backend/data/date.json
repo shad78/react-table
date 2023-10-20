@@ -1,0 +1,93 @@
+[
+  {
+    "id": 1,
+    "startDate": "2023-10-03",
+    "endDate": "2023-10-25",
+    "monthYear": "10, 2023",
+    "excludeDates": [
+      "2023-10-08",
+      "2023-10-15",
+      "2023-10-22"
+    ],
+    "numDays": 20,
+    "leadCount": 500,
+    "DRR": 25,
+    "lastUpdated": "2023-10-05 13:30:41"
+  },
+  {
+    "id": 2,
+    "startDate": "2023-10-03",
+    "endDate": "2023-10-25",
+    "monthYear": "10, 2023",
+    "excludeDates": [
+      "2023-10-08",
+      "2023-10-15",
+      "2023-10-22"
+    ],
+    "numDays": 20,
+    "leadCount": 500,
+    "DRR": 25,
+    "lastUpdated": "2023-10-05 13:30:41"
+  },
+  {
+    "id": 3,
+    "startDate": "2023-10-03",
+    "endDate": "2023-10-25",
+    "monthYear": "10, 2023",
+    "excludeDates": [
+      "2023-10-08",
+      "2023-10-15",
+      "2023-10-22"
+    ],
+    "numDays": 20,
+    "leadCount": 500,
+    "DRR": 25,
+    "lastUpdated": "2023-10-05 13:30:41"
+  },
+  {
+    "id": 4,
+    "startDate": "2023-10-03",
+    "endDate": "2023-10-25",
+    "monthYear": "10, 2023",
+    "excludeDates": [
+      "2023-10-08",
+      "2023-10-15",
+      "2023-10-22"
+    ],
+    "numDays": 20,
+    "leadCount": 1000,
+    "DRR": 50,
+    "lastUpdated": "2023-10-05 13:30:32"
+  },
+  {
+    "id": 5,
+    "startDate": "2023-09-01",
+    "endDate": "2023-09-25",
+    "monthYear": "9, 2023",
+    "excludeDates": [
+      "2023-09-03",
+      "2023-09-05",
+      "2023-09-10",
+      "2023-09-17",
+      "2023-09-24"
+    ],
+    "numDays": 20,
+    "leadCount": 9300,
+    "DRR": 490,
+    "lastUpdated": "2023-10-01 01:38:50"
+  },
+  {
+    "id": 6,
+    "startDate": "2023-09-27",
+    "endDate": "2023-10-17",
+    "monthYear": "10, 2023",
+    "excludeDates": [
+      "2023-10-10",
+      "2023-10-12"
+    ],
+    "numDays": 19,
+    "leadCount": 38,
+    "DRR": 2,
+    "lastUpdated": "2023-10-19 14:56:58"
+  }
+]
