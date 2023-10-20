@@ -63,7 +63,7 @@ const Table = () => {
     const newId = tableData.length + 1;
     setId(newId);
     setFormData({ ...formData, id: newId, monthYear: newMonthYear });
-  }, [tableData]);
+  }, [formData, tableData]);
 
   const handleStartDate = (e) => {
     const newStartDate = e.target.value;
@@ -96,16 +96,14 @@ const Table = () => {
   };
 
   useEffect(() => {
-    if (startDate !== "" && endDate !== "") calcNumDays();
-  }, [startDate, endDate, excludeDates]);
-
-  const calcNumDays = () => {
-    const daysDifference =
-      (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24) + 1;
-    const days = daysDifference - excludeDates.length;
-    setNumDays(days);
-    setFormData({ ...formData, numDays: days });
-  };
+    if (startDate !== "" && endDate !== "") {
+      const daysDifference =
+        (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24) + 1;
+      const days = daysDifference - excludeDates.length;
+      setNumDays(days);
+      setFormData({ ...formData, numDays: days });
+    }
+  }, [formData, startDate, endDate, excludeDates]);
 
   const handleLeadCount = (e) => {
     const newLeadCount = parseInt(e.target.value);
@@ -114,10 +112,6 @@ const Table = () => {
   };
 
   useEffect(() => {
-    calcDRR();
-  }, [numDays, leadCount]);
-
-  const calcDRR = () => {
     if (numDays && leadCount) {
       const newDRR = parseFloat((leadCount / numDays).toFixed(2));
       setDRR(newDRR);
@@ -125,7 +119,7 @@ const Table = () => {
     } else {
       setDRR(0);
     }
-  };
+  }, [formData, numDays, leadCount]);
 
   const [startDateMessage, setStartDateMessage] = useState("");
   const [endDateMessage, setEndDateMessage] = useState("");
