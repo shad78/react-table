@@ -51,7 +51,6 @@ const Table = () => {
   const [numDays, setNumDays] = useState(0);
   const [leadCount, setLeadCount] = useState(0);
   const [DRR, setDRR] = useState(0);
-  const [lastUpdated, setLastUpdated] = useState("");
 
   useEffect(() => {
     const today = new Date().toISOString().split("T")[0];
@@ -60,10 +59,19 @@ const Table = () => {
     const month = today.split("-")[1];
     const newMonthYear = `${month}, ${year}`;
     setMonthYear(newMonthYear);
+
     const newId = tableData.length + 1;
     setId(newId);
-    setFormData({ ...formData, id: newId, monthYear: newMonthYear });
   }, [tableData]);
+
+  // Separate useEffect for updating formData
+  useEffect(() => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      id: id,
+      monthYear: monthYear,
+    }));
+  }, [id, monthYear]);
 
   const handleStartDate = (e) => {
     const newStartDate = e.target.value;
@@ -96,16 +104,18 @@ const Table = () => {
   };
 
   useEffect(() => {
-    if (startDate !== "" && endDate !== "") calcNumDays();
-  }, [startDate, endDate, excludeDates]);
+    const calcNumDays = () => {
+      const daysDifference =
+        (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24) + 1;
+      const days = daysDifference - excludeDates.length;
+      setNumDays(days);
+      setFormData({ ...formData, numDays: days });
+    };
 
-  const calcNumDays = () => {
-    const daysDifference =
-      (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24) + 1;
-    const days = daysDifference - excludeDates.length;
-    setNumDays(days);
-    setFormData({ ...formData, numDays: days });
-  };
+    if (startDate !== "" && endDate !== "") {
+      calcNumDays();
+    }
+  }, [formData, startDate, endDate, excludeDates]);
 
   const handleLeadCount = (e) => {
     const newLeadCount = parseInt(e.target.value);
@@ -114,18 +124,17 @@ const Table = () => {
   };
 
   useEffect(() => {
+    const calcDRR = () => {
+      if (numDays && leadCount) {
+        const newDRR = parseFloat((leadCount / numDays).toFixed(2));
+        setDRR(newDRR);
+        setFormData({ ...formData, DRR: newDRR });
+      } else {
+        setDRR(0);
+      }
+    };
     calcDRR();
-  }, [numDays, leadCount]);
-
-  const calcDRR = () => {
-    if (numDays && leadCount) {
-      const newDRR = parseFloat((leadCount / numDays).toFixed(2));
-      setDRR(newDRR);
-      setFormData({ ...formData, DRR: newDRR });
-    } else {
-      setDRR(0);
-    }
-  };
+  }, [formData, numDays, leadCount]);
 
   const [startDateMessage, setStartDateMessage] = useState("");
   const [endDateMessage, setEndDateMessage] = useState("");
@@ -141,7 +150,6 @@ const Table = () => {
     const newLastUpdated = `${new Date().toISOString().split("T")[0]} ${
       new Date().toISOString().split("T")[1].split(".")[0]
     }`;
-    setLastUpdated(newLastUpdated);
     setFormData({ ...formData, lastUpdated: newLastUpdated });
     const newFormData = { ...formData, lastUpdated: newLastUpdated };
     axios
