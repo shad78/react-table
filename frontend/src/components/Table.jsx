@@ -9,7 +9,7 @@ const Table = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/data")
+      .get("https://react-table-wnda.onrender.com/api/data")
       .then((res) => {
         setTableData(res.data.data);
       })
@@ -145,7 +145,7 @@ const Table = () => {
     setFormData({ ...formData, lastUpdated: newLastUpdated });
     const newFormData = { ...formData, lastUpdated: newLastUpdated };
     axios
-      .post("http://localhost:3001/api/data", newFormData)
+      .post("https://react-table-wnda.onrender.com/api/data", newFormData)
       .then((res) => {
         console.log("Data added successfully");
         console.log(formData);
